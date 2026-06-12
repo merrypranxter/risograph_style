@@ -1,0 +1,42 @@
+{
+  "repo": "risograph_style",
+  "type": "style_reference",
+  "aesthetic_category": "print_process",
+  "subcategories": ["halftone", "spot_color", "misregistration", "indie_print"],
+  "riso_ink_catalog": {
+    "Fluorescent_Red": "#FF4C00",
+    "Yellow": "#FFE800",
+    "Green": "#00A95C",
+    "Blue": "#0078BF",
+    "Fluorescent_Pink": "#FF6BB5",
+    "Navy": "#012169",
+    "Orange": "#DC4E28",
+    "Purple": "#3D1F6D",
+    "Teal": "#00838A",
+    "Brown": "#8B4C2A",
+    "Black": "#000000"
+  },
+  "regimes": ["TWO_COLOR_CLEAN", "THREE_COLOR_PUSH", "FLUORESCENT_GLOW", "DARK_MATTER", "MISREG_CHAOS"],
+  "palettes": {
+    "RISO_CHERRY": ["Fluorescent_Red", "Yellow"],
+    "RISO_OCEAN": ["Blue", "Teal"],
+    "RISO_FOREST": ["Green", "Brown"],
+    "RISO_NIGHT": ["Navy", "Fluorescent_Pink"],
+    "RISO_ACID": ["Fluorescent_Red", "Green"],
+    "RISO_PUNK": ["Black", "Fluorescent_Pink"]
+  },
+  "shaders": [
+    { "file": "shaders/01_two_color_clean.frag.glsl", "regime": "TWO_COLOR_CLEAN", "palette": "RISO_CHERRY" },
+    { "file": "shaders/02_riso_ocean.frag.glsl",      "regime": "TWO_COLOR_CLEAN", "palette": "RISO_OCEAN"  },
+    { "file": "shaders/03_three_color_push.frag.glsl","regime": "THREE_COLOR_PUSH","palette": "RISO_NIGHT+Yellow" },
+    { "file": "shaders/04_fluorescent_glow.frag.glsl","regime": "FLUORESCENT_GLOW","palette": "FluoRed+FluoPink" },
+    { "file": "shaders/05_dark_matter.frag.glsl",     "regime": "DARK_MATTER",     "palette": "Black+Teal" },
+    { "file": "shaders/06_misreg_chaos.frag.glsl",    "regime": "MISREG_CHAOS",    "palette": "Orange+Purple" },
+    { "file": "shaders/07_riso_punk.frag.glsl",       "regime": "RISO_PUNK",       "palette": "Black+FluoPink" },
+    { "file": "shaders/08_riso_acid.frag.glsl",       "regime": "RISO_ACID",       "palette": "FluoRed+Green" }
+  ],
+  "pipeline_role": "context_source",
+  "compatible_with": ["zine_aesthetic", "dither", "damage_aesthetics", "duotone_halftone_press"],
+  "reposcripter2": true,
+  "shaderforge": true
+}
