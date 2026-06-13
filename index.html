@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>risograph_style — Shader Gallery</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; overflow: hidden; background: #111; font-family: monospace; }
+    canvas { display: block; width: 100vw; height: 100vh; }
+
+    #ui {
+      position: fixed; top: 0; left: 0; right: 0;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 10px 16px;
+      background: rgba(0,0,0,0.65);
+      color: #fff;
+      font-size: 12px;
+      z-index: 10;
+      pointer-events: none;
+    }
+
+    #ui .nav { pointer-events: all; display: flex; gap: 8px; align-items: center; }
+    #ui button {
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.25);
+      color: #fff;
+      font-family: monospace;
+      font-size: 12px;
+      padding: 4px 12px;
+      cursor: pointer;
+      border-radius: 2px;
+      transition: background 0.15s;
+    }
+    #ui button:hover { background: rgba(255,255,255,0.25); }
+
+    #shader-name { font-size: 13px; font-weight: bold; letter-spacing: 0.05em; }
+    #shader-meta { font-size: 11px; opacity: 0.65; margin-top: 2px; }
+    #counter { opacity: 0.5; }
+
+    #hint {
+      position: fixed; bottom: 12px; left: 50%; transform: translateX(-50%);
+      color: rgba(255,255,255,0.35);
+      font-family: monospace; font-size: 11px;
+      pointer-events: none; z-index: 10;
+    }
+  </style>
+</head>
+<body>
+  <div id="ui">
+    <div>
+      <div id="shader-name">—</div>
+      <div id="shader-meta">—</div>
+    </div>
+    <div class="nav">
+      <button id="btn-prev">◀ prev</button>
+      <span id="counter">1 / 8</span>
+      <button id="btn-next">next ▶</button>
+    </div>
+  </div>
+
+  <div id="hint">← → arrow keys or buttons to cycle shaders</div>
+
+  <script type="module" src="./src/main.js"></script>
+</body>
+</html>

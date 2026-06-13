@@ -1,0 +1,34 @@
+REPO: risograph_style
+PURPOSE: Risograph printing visual grammar — RISO ink colors, halftone screens, misregistration, multiply blend
+STACK: Three.js + WebGL2 + GLSL + Vite
+
+CORE MATH:
+- Halftone dot: dot(sin(uv.x*lpi*cos(angle) + uv.y*lpi*sin(angle)), ...) > threshold(luminance)
+  more precisely: length(fract(rot(uv, angle) * lpi) - 0.5) > threshold * dot_gain
+- Misregistration: ink2_color = sample(tex, uv + misreg_offset)
+- Multiply blend: result = 1.0 - (1.0 - ink1) * (1.0 - ink2)  [in ink space, not screen]
+  actual: result_screen = ink1_opacity * ink1_color * ink2_opacity * ink2_color [subtractive]
+  simplified: result = ink1 * ink2 (multiply in RGB)
+- Paper show-through: final = mix(paper_color, ink_result, coverage)
+- Dot gain: effective_threshold = threshold / dot_gain
+- Ink transparency: ink_alpha = ink_transparency * (1.0 - luminance(paper))
+
+RISO_INK_CATALOG:
+- Fluorescent Red: #FF4C00
+- Yellow: #FFE800
+- Green: #00A95C
+- Blue: #0078BF
+- Fluorescent Pink: #FF6BB5
+- Navy: #012169
+- Orange: #DC4E28
+- Purple: #3D1F6D
+- Teal: #00838A
+- Brown: #8B4C2A
+- Black: #000000
+
+REGIMES:
+- TWO_COLOR_CLEAN: 2 inks, 2–4px misreg, 65lpi, cream paper, multiply overlap
+- THREE_COLOR_PUSH: 3 inks, 7-zone color mixing, tighter registration
+- FLUORESCENT_GLOW: Fluo Red + Fluo Pink dominant, cream paper, 75lpi
+- DARK_MATTER: heavy black + one color at low density, peek-through effect
+- MISREG_CHAOS: 8–15px misregistration, colors fight, accident=aesthetic
